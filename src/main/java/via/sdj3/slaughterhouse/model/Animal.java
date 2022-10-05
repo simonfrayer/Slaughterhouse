@@ -6,7 +6,7 @@ public class Animal
 {
   private Timestamp date;
   private double weight;
-  private int registrationNumber;
+  private long registrationNumber;
   private String origin;
 
   public Animal(Timestamp date, double weight, int registrationNumber,
@@ -28,7 +28,7 @@ public class Animal
     this.weight = weight;
   }
 
-  public void setRegistrationNumber(int registrationNumber)
+  public void setRegistrationNumber(long registrationNumber)
   {
     this.registrationNumber = registrationNumber;
   }
@@ -48,7 +48,7 @@ public class Animal
     return weight;
   }
 
-  public int getRegistrationNumber()
+  public long getRegistrationNumber()
   {
     return registrationNumber;
   }

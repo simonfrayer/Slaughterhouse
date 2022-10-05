@@ -1,5 +1,12 @@
 package via.sdj3.slaughterhouse.service;
 
-public class AnimalServiceImpl
+import via.sdj3.slaughterhouse.model.Animal;
+
+public class AnimalServiceImpl implements AnimalService
 {
+
+    @Override
+    public Animal registerAnimal(Animal animal) {
+        return null;
+    }
 }
