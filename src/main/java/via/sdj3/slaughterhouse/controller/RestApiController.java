@@ -1,6 +1,7 @@
 package via.sdj3.slaughterhouse.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import via.sdj3.slaughterhouse.model.Animal;
@@ -41,6 +42,21 @@ public class RestApiController
     {
       List<Animal> animals = service.getAnimals();
       return new ResponseEntity<Object>(animals,HttpStatus.OK);
+    }
+    catch (Exception e)
+    {
+      System.out.println(e.getMessage());
+      return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @GetMapping(value = "/animals/{regNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Object> getAnimalById(@PathVariable("regNumber") Long regnumber)
+  {
+    try
+    {
+      Animal animal = service.getByRegNumber(regnumber);
+      return new ResponseEntity<Object>(animal,HttpStatus.OK);
     }
     catch (Exception e)
     {

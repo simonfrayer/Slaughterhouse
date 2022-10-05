@@ -31,4 +31,9 @@ public class AnimalServiceImpl implements AnimalService
     {
         return database.getAll();
     }
+
+    @Override public Animal getByRegNumber(long regNumber)
+    {
+        return database.getByRegNumber(regNumber);
+    }
 }
