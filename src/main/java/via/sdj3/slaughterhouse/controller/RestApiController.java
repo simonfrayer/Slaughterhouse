@@ -1,6 +1,5 @@
 package via.sdj3.slaughterhouse.controller;
 
-import org.hibernate.criterion.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
