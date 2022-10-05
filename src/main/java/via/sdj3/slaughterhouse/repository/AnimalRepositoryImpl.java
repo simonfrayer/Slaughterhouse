@@ -33,4 +33,9 @@ public class AnimalRepositoryImpl implements AnimalRepository
     return animalList;
   }
 
+  @Override public Animal getByRegNumber(long regNumber) throws Exception
+  {
+    return null;
+  }
+
 }
