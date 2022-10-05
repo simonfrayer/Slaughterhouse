@@ -7,5 +7,5 @@ import java.util.List;
 public interface AnimalRepository
 {
     Animal registerAnimal(Animal animal);
-    List<Animal> getAnimals();
+    List<Animal> getAll();
 }

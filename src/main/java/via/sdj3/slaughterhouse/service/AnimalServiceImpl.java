@@ -29,6 +29,6 @@ public class AnimalServiceImpl implements AnimalService
 
     @Override public List<Animal> getAnimals()
     {
-        return database.getAnimals();
+        return database.getAll();
     }
 }
