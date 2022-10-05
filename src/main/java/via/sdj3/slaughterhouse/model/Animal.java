@@ -9,7 +9,7 @@ public class Animal
   private long registrationNumber;
   private String origin;
 
-  public Animal(Timestamp date, double weight, int registrationNumber,
+  public Animal(Timestamp date, double weight, long registrationNumber,
       String origin)
   {
     this.date = date;
