@@ -6,6 +6,7 @@ import via.sdj3.slaughterhouse.repository.AnimalRepository;
 
 import java.util.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Service
 public class AnimalServiceImpl implements AnimalService
@@ -24,5 +25,10 @@ public class AnimalServiceImpl implements AnimalService
         Animal createAnimal = new Animal(todayDate, weight, registrationNumber, origin);
 
         return database.registerAnimal(createAnimal);
+    }
+
+    @Override public List<Animal> getAnimals()
+    {
+        return database.getAnimals();
     }
 }
