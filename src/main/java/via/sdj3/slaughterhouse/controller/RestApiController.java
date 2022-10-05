@@ -22,7 +22,7 @@ public class RestApiController
     this.service = service;
   }
   @PostMapping("/animals")
-  public ResponseEntity<Object> registerAnimal(@RequestBody long registerNumber, double weight, String origin)
+  public ResponseEntity<Object> registerAnimal(@RequestBody long registerNumber, @RequestBody double weight, @RequestBody String origin)
   {
     try
     {
