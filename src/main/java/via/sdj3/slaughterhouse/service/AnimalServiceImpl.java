@@ -16,7 +16,7 @@ public class AnimalServiceImpl implements AnimalService
     }
 
     @Override
-    public Animal registerAnimal( double weight, int registrationNumber, String origin) {
+    public Animal registerAnimal( double weight, long registrationNumber, String origin) {
         Date date = new Date();
         Timestamp todayDate = new Timestamp(date.getTime());
 
