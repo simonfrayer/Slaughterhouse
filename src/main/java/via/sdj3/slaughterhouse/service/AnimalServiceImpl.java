@@ -34,6 +34,13 @@ public class AnimalServiceImpl implements AnimalService
 
     @Override public Animal getByRegNumber(long regNumber)
     {
-        return database.getByRegNumber(regNumber);
+        try
+        {
+            return database.getByRegNumber(regNumber);
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }
