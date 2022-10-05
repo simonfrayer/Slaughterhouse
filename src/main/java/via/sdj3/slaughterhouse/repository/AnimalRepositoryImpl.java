@@ -1,5 +1,6 @@
 package via.sdj3.slaughterhouse.repository;
 
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers;
 import org.springframework.stereotype.Repository;
 import via.sdj3.slaughterhouse.model.Animal;
 
@@ -31,6 +32,15 @@ public class AnimalRepositoryImpl implements AnimalRepository
     animalList.addAll(conversion);
 
     return animalList;
+  }
+
+  @Override
+  public Animal getByRegNumber(long regNumber) throws Exception {
+    if (!animalMap.containsKey(regNumber))
+      throw new Exception("Not registered");
+
+
+    return animalMap.get(regNumber);
   }
 
 }
