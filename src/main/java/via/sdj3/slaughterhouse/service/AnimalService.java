@@ -8,4 +8,5 @@ public interface AnimalService
 {
     Animal registerAnimal( double weight, long registrationNumber, String origin);
     List<Animal> getAnimals();
+    Animal getByRegNumber(long regNumber);
 }

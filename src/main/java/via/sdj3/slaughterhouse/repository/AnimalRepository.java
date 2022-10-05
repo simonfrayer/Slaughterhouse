@@ -8,4 +8,5 @@ public interface AnimalRepository
 {
     Animal registerAnimal(Animal animal);
     List<Animal> getAll();
+    Animal getByRegNumber(long regNumber);
 }
