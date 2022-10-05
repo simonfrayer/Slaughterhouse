@@ -2,13 +2,16 @@ package via.sdj3.slaughterhouse.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import via.sdj3.slaughterhouse.model.Animal;
 import via.sdj3.slaughterhouse.service.AnimalService;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class RestApiController
 {
 
@@ -19,8 +22,7 @@ public class RestApiController
     this.service = service;
   }
   @PostMapping("/animals")
-  @ResponseBody
-  public ResponseEntity<Object> registerAnimal(@RequestBody long registerNumber, double weight, String origin)
+  public ResponseEntity<Object> registerAnimal(@RequestBody long registerNumber, @RequestBody double weight, @RequestBody String origin)
   {
     try
     {
