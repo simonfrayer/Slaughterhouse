@@ -1,6 +1,8 @@
 package via.sdj3.slaughterhouse.model;
 
+
 import java.sql.Timestamp;
+
 
 public class Animal
 {

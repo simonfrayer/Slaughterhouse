@@ -5,7 +5,6 @@ import via.sdj3.slaughterhouse.model.Animal;
 
 import java.util.HashMap;
 import java.util.Map;
-
 @Repository
 public class AnimalRepositoryImpl implements AnimalRepository
 {

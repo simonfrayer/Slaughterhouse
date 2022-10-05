@@ -1,12 +1,13 @@
 package via.sdj3.slaughterhouse.service;
 
+import org.springframework.stereotype.Service;
 import via.sdj3.slaughterhouse.model.Animal;
 import via.sdj3.slaughterhouse.repository.AnimalRepository;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.sql.Timestamp;
 
+@Service
 public class AnimalServiceImpl implements AnimalService
 {
     private AnimalRepository database;

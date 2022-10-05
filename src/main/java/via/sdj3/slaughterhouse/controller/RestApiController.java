@@ -2,7 +2,6 @@ package via.sdj3.slaughterhouse.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import via.sdj3.slaughterhouse.model.Animal;
 import via.sdj3.slaughterhouse.service.AnimalService;
 
+
 @RestController
-@RequestMapping("/api/slaughterhouse")
+@RequestMapping("/api")
 public class RestApiController
 {
 
