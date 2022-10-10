@@ -64,4 +64,19 @@ public class RestApiController
       return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
     }
   }
+
+  @GetMapping(value = "/animals/{year}/{month}/{day}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Object> getAnimalById(@PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day") int day)
+  {
+    try
+    {
+      List<Animal> animals = service.getAllFromDate(year, month, day);
+      return new ResponseEntity<Object>(animals,HttpStatus.OK);
+    }
+    catch (Exception e)
+    {
+      System.out.println(e.getMessage());
+      return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+    }
+  }
 }

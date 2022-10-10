@@ -9,4 +9,6 @@ public interface AnimalService
     Animal registerAnimal( double weight, long registrationNumber, String origin);
     List<Animal> getAnimals();
     Animal getByRegNumber(long regNumber);
+
+    List<Animal> getAllFromDate(int year, int month, int day);
 }

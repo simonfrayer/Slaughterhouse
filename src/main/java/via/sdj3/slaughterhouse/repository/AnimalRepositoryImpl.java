@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import via.sdj3.slaughterhouse.model.Animal;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Repository
@@ -41,6 +42,22 @@ public class AnimalRepositoryImpl implements AnimalRepository
 
 
     return animalMap.get(regNumber);
+  }
+
+  @Override
+  public List<Animal> getAllFromDate(Timestamp date) {
+    List<Animal> animalsToReturn = new ArrayList<>();
+    String requiredDate = new SimpleDateFormat("yyyy.MM.dd").format(date);
+
+    for (Animal animal:animalMap.values()
+         ) {
+      String animalDate = new SimpleDateFormat("yyyy.MM.dd").format(animal.getDate());
+
+      if (animalDate.equals(requiredDate)){
+        animalsToReturn.add(animal);
+      }
+    }
+    return animalsToReturn;
   }
 
 }

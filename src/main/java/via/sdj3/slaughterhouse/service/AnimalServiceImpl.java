@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import via.sdj3.slaughterhouse.model.Animal;
 import via.sdj3.slaughterhouse.repository.AnimalRepository;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -42,5 +43,14 @@ public class AnimalServiceImpl implements AnimalService
         {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<Animal> getAllFromDate(int year, int month, int day) {
+        Calendar c = Calendar.getInstance();
+        c.set(year, month - 1, day, 0, 0);
+        Timestamp getDate = new Timestamp(c.getTime().getTime());
+
+        return database.getAllFromDate(getDate);
     }
 }
