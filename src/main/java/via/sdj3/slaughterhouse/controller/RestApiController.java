@@ -66,7 +66,7 @@ public class RestApiController
   }
 
   @GetMapping(value = "/animals/{year}/{month}/{day}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> getAnimalById(@PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day") int day)
+  public ResponseEntity<Object> getAnimalsByDate(@PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day") int day)
   {
     try
     {
