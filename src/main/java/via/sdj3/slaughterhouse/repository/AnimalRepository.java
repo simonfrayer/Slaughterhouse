@@ -12,4 +12,5 @@ public interface AnimalRepository
     Animal getByRegNumber(long regNumber) throws Exception;
 
     List<Animal> getAllFromDate(Timestamp date);
+    List<Animal> getByOrigin(String origin) throws Exception;
 }

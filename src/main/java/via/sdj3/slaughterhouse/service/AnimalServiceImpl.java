@@ -53,4 +53,9 @@ public class AnimalServiceImpl implements AnimalService
 
         return database.getAllFromDate(getDate);
     }
+
+    @Override public List<Animal> getByOrigin(String origin) throws Exception
+    {
+        return database.getByOrigin(origin);
+    }
 }

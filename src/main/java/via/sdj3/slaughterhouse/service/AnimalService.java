@@ -11,4 +11,6 @@ public interface AnimalService
     Animal getByRegNumber(long regNumber);
 
     List<Animal> getAllFromDate(int year, int month, int day);
+
+    List<Animal> getByOrigin(String origin) throws Exception;
 }

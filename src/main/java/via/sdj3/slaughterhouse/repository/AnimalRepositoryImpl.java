@@ -36,6 +36,26 @@ public class AnimalRepositoryImpl implements AnimalRepository
   }
 
   @Override
+  public List<Animal> getByOrigin(String origin) throws Exception
+  {
+    List<Animal> animals = new ArrayList<>();
+
+    for (Map.Entry<Long, Animal> animal : animalMap.entrySet())
+    {
+      if (animal.getValue().getOrigin().equalsIgnoreCase(origin))
+      {
+        animals.add(animal.getValue());
+      }
+    }
+
+    if (animals.isEmpty())
+    {
+      throw new Exception("No animal was found");
+    }
+    return animals;
+  }
+
+  @Override
   public Animal getByRegNumber(long regNumber) throws Exception {
     if (!animalMap.containsKey(regNumber))
       throw new Exception("Not registered");

@@ -21,7 +21,7 @@ public class RestApiController
     this.service = service;
   }
   @PostMapping("/animals")
-  public ResponseEntity<Object> registerAnimal(@RequestBody long registerNumber, @RequestBody double weight, @RequestBody String origin)
+  public ResponseEntity<Object> registerAnimal(@RequestParam long registerNumber, @RequestParam double weight, @RequestParam String origin)
   {
     try
     {
@@ -71,6 +71,23 @@ public class RestApiController
     try
     {
       List<Animal> animals = service.getAllFromDate(year, month, day);
+      return new ResponseEntity<Object>(animals,HttpStatus.OK);
+    }
+    catch (Exception e)
+    {
+      System.out.println(e.getMessage());
+      return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @GetMapping (value="/animals/origin")
+  public ResponseEntity<Object> getAnimalsByOrigin(@RequestParam String origin)
+  {
+    try
+    {
+      System.out.println(origin);
+      List<Animal> animals = service.getByOrigin(origin);
+
       return new ResponseEntity<Object>(animals,HttpStatus.OK);
     }
     catch (Exception e)
