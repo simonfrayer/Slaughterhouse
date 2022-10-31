@@ -27,16 +27,14 @@ public class gRPCClient implements ServerInterface{
     {
         Animal animalResponse = stub.createAnimal(animal);
 
-        via.sdj3.slaughterhouse.model.Animal animalToDisplay = new via.sdj3.slaughterhouse.model.Animal(animalResponse.getDate(),
+        return new via.sdj3.slaughterhouse.model.Animal(animalResponse.getDate(),
             animalResponse.getWeight(),animalResponse.getRegistrationNumber(),animalResponse.getOrigin());
-
-        return animalToDisplay;
     }
 
     @Override public via.sdj3.slaughterhouse.model.Product createProduct(
         Product product)
     {
-        return null;
+        return new via.sdj3.slaughterhouse.model.Product(54654,new ArrayList<>());
     }
 
     @Override public List<Long> getAllAnimalsFromProduct(
