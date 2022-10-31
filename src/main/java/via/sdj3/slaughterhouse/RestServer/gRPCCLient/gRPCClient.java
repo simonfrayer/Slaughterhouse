@@ -9,13 +9,16 @@ import java.util.List;
 
 @Service
 public class gRPCClient implements ServerInterface{
+
+    private static SlaughterhouseServerGrpc.SlaughterhouseServerBlockingStub stub;
     public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8060)
                 .usePlaintext()
                 .build();
 
-        SlaughterhouseServerGrpc.SlaughterhouseServerBlockingStub stub
-                = SlaughterhouseServerGrpc.newBlockingStub(channel);
+        stub = SlaughterhouseServerGrpc.newBlockingStub(channel);
+
+
 
     }
 
@@ -28,7 +31,9 @@ public class gRPCClient implements ServerInterface{
     @Override public via.sdj3.slaughterhouse.model.Product createProduct(
         Product product)
     {
-        return null;
+        Product responseProduct = stub.createProduct(product);
+
+        return new via.sdj3.slaughterhouse.model.Product(responseProduct.getRegistrationNumber(), responseProduct.getAnimalRegNumberList());
     }
 
     @Override public List<Long> getAllAnimalsFromProduct(
@@ -40,6 +45,8 @@ public class gRPCClient implements ServerInterface{
     @Override public List<Long> getProductsFromAnimal(
         AnimalRegistrationNumber regNum)
     {
-        return null;
+        ProductsFromAnimal productRegNumbers = stub.getAllProductFromAnimal(regNum);
+
+        return productRegNumbers.getProductRegistrationNumberList();
     }
 }
