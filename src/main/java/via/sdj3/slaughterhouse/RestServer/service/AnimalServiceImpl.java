@@ -1,4 +1,4 @@
-package via.sdj3.slaughterhouse.service;
+package via.sdj3.slaughterhouse.RestServer.service;
 
 import org.springframework.stereotype.Service;
 import via.sdj3.slaughterhouse.model.Animal;
@@ -25,19 +25,19 @@ public class AnimalServiceImpl implements AnimalService
 
         Animal createAnimal = new Animal(todayDate, weight, registrationNumber, origin);
 
-        return database.registerAnimal(createAnimal);
+        //return database.registerAnimal(createAnimal);
     }
 
     @Override public List<Animal> getAnimals()
     {
-        return database.getAll();
+       // return database.getAll();
     }
 
     @Override public Animal getByRegNumber(long regNumber)
     {
         try
         {
-            return database.getByRegNumber(regNumber);
+           // return database.getByRegNumber(regNumber);
         }
         catch (Exception e)
         {
@@ -51,11 +51,11 @@ public class AnimalServiceImpl implements AnimalService
         c.set(year, month - 1, day, 0, 0);
         Timestamp getDate = new Timestamp(c.getTime().getTime());
 
-        return database.getAllFromDate(getDate);
+        //return database.getAllFromDate(getDate);
     }
 
     @Override public List<Animal> getByOrigin(String origin) throws Exception
     {
-        return database.getByOrigin(origin);
+       // return database.getByOrigin(origin);
     }
 }

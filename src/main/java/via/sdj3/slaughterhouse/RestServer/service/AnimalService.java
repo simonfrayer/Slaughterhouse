@@ -1,4 +1,4 @@
-package via.sdj3.slaughterhouse.service;
+package via.sdj3.slaughterhouse.RestServer.service;
 
 import via.sdj3.slaughterhouse.model.Animal;
 

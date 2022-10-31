@@ -1,6 +1,7 @@
 package via.sdj3.slaughterhouse.repository;
 
-import via.sdj3.slaughterhouse.model.Animal;
+import via.sdj3.slaughterhouse.protobuf.Animal;
+import via.sdj3.slaughterhouse.protobuf.Product;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -8,9 +9,10 @@ import java.util.List;
 public interface AnimalRepository
 {
     Animal registerAnimal(Animal animal);
-    List<Animal> getAll();
-    Animal getByRegNumber(long regNumber) throws Exception;
+    List<Long> getAllAnimalRegNumberFromProduct(long productRegNum);
 
-    List<Animal> getAllFromDate(Timestamp date);
-    List<Animal> getByOrigin(String origin) throws Exception;
+    Product registerProduct(Product product);
+
+    List<Long> getAllProductRegNumFromAnimal (long animalRegNum);
+
 }

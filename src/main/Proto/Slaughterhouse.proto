@@ -1,0 +1,38 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "via.sdj3.slaughterhouse.protobuf";
+
+service SlaughterhouseServer
+{
+  rpc createAnimal(Animal) returns (Animal);
+  rpc getAllAnimalsFromProduct(ProductRegNumber) returns(AnimalsFromProduct);
+  rpc getAllProductFromAnimal(AnimalsFromProduct) returns(ProductsFromAnimal);
+}
+
+message ProductRegNumber{
+  int64 registrationNumber =1;
+}
+
+message Product {
+  int64 registrationNumber = 1;
+  repeated int64 animalRegNumber =2;
+}
+
+message Animal {
+  string date =1;
+  double weight = 2;
+  int64 registrationNumber = 3;
+  string origin=4;
+}
+
+message AnimalsFromProduct {
+  repeated int64 animalRegistrationNumber = 1;
+}
+
+message AnimalRegistrationNumber {
+  int64 animalRegistrationNumber = 1;
+}
+
+  message ProductsFromAnimal {
+    repeated int64 productRegistrationNumber = 1;
+  }
