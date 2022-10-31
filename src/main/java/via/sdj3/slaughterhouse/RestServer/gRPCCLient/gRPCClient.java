@@ -2,16 +2,17 @@ package via.sdj3.slaughterhouse.RestServer.gRPCCLient;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.stereotype.Service;
 import via.sdj3.slaughterhouse.protobuf.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@GRpcService
 public class gRPCClient implements ServerInterface{
 
-    private static SlaughterhouseServerGrpc.SlaughterhouseServerBlockingStub stub;
+    public static SlaughterhouseServerGrpc.SlaughterhouseServerBlockingStub stub;
 
     public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8060)

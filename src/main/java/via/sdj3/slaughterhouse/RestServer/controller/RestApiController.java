@@ -35,7 +35,7 @@ public class RestApiController
     }
   }
 
-  @PostMapping("/animals")
+  @PostMapping("/products")
   public ResponseEntity<Object> createProducts(@RequestParam long registerNumber, @RequestParam List<Long> animalRegNUmbers)
   {
     try
@@ -65,7 +65,7 @@ public class RestApiController
     }
   }
 
-  @GetMapping("/animals")
+  @GetMapping("/products")
   public ResponseEntity<Object> getProductsFromAnimal(@RequestParam Long regNumber)
   {
     try
