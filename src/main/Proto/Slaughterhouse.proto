@@ -5,6 +5,7 @@ option java_package = "via.sdj3.slaughterhouse.protobuf";
 service SlaughterhouseServer
 {
   rpc createAnimal(Animal) returns (Animal);
+  rpc createProduct(Product) returns(Product);
   rpc getAllAnimalsFromProduct(ProductRegNumber) returns(AnimalsFromProduct);
   rpc getAllProductFromAnimal(AnimalsFromProduct) returns(ProductsFromAnimal);
 }

@@ -27,6 +27,19 @@ public class SlaughterhouseImpl extends SlaughterhouseServerGrpc.SlaughterhouseS
     responseObserver.onCompleted();
   }
 
+  @Override public void createProduct(Product request,
+      StreamObserver<Product> responseObserver)
+  {
+    Product product = Product.newBuilder()
+        .setRegistrationNumber(request.getRegistrationNumber())
+        .addAllAnimalRegNumber(request.getAnimalRegNumberList())
+        .build();
+
+    repository.registerProduct(product);
+    responseObserver.onNext(product);
+    responseObserver.onCompleted();
+  }
+
   @Override public void getAllAnimalsFromProduct(ProductRegNumber request,
       StreamObserver<AnimalsFromProduct> responseObserver)
   {
