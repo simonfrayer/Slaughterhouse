@@ -31,7 +31,11 @@ public class AnimalRepositoryImpl implements AnimalRepository
   {
     ArrayList<Long> animalRegNum = new ArrayList<>();
     Product product = productMap.get(productRegNum);
-    animalRegNum.add(product.)
+    for (int i = 0; i < product.getAnimalRegNumberCount(); i++)
+    {
+      animalRegNum.add(product.getAnimalRegNumber(i));
+    }
+    return animalRegNum;
   }
 
   @Override public Product registerProduct(Product product)
@@ -42,8 +46,19 @@ public class AnimalRepositoryImpl implements AnimalRepository
 
   @Override public List<Long> getAllProductRegNumFromAnimal(long animalRegNum)
   {
-    return null;
+    ArrayList<Long> productRegNum = new ArrayList<>();
+    Collection<Product> products = productMap.values();
+
+    for (Product product: products)
+    {
+      for (int i = 0; i < product.getAnimalRegNumberCount(); i++)
+      {
+        if (product.getAnimalRegNumber(i) == animalRegNum)
+        {
+          productRegNum.add(product.getRegistrationNumber());
+        }
+      }
+    }
+    return productRegNum;
   }
-
-
 }

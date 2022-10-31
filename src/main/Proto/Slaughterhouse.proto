@@ -10,7 +10,7 @@ service SlaughterhouseServer
 }
 
 message ProductRegNumber{
-  int64 registrationNumber =1;
+   int64 registrationNumber =1;
 }
 
 message Product {

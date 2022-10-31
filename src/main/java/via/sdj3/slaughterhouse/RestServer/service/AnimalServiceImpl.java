@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Service
-public class AnimalServiceImpl implements AnimalService
+public class AnimalServiceImpl
 {
     private AnimalRepository database;
 
@@ -18,8 +18,8 @@ public class AnimalServiceImpl implements AnimalService
         this.database = database;
     }
 
-    @Override
-    public Animal registerAnimal( double weight, long registrationNumber, String origin) {
+
+    public void registerAnimal( double weight, long registrationNumber, String origin) {
         Date date = new Date();
         Timestamp todayDate = new Timestamp(date.getTime());
 
@@ -28,12 +28,13 @@ public class AnimalServiceImpl implements AnimalService
         //return database.registerAnimal(createAnimal);
     }
 
-    @Override public List<Animal> getAnimals()
+    public void getAnimals()
     {
        // return database.getAll();
+        return ;
     }
 
-    @Override public Animal getByRegNumber(long regNumber)
+    public void getByRegNumber(long regNumber)
     {
         try
         {
@@ -45,8 +46,7 @@ public class AnimalServiceImpl implements AnimalService
         }
     }
 
-    @Override
-    public List<Animal> getAllFromDate(int year, int month, int day) {
+    public void getAllFromDate(int year, int month, int day) {
         Calendar c = Calendar.getInstance();
         c.set(year, month - 1, day, 0, 0);
         Timestamp getDate = new Timestamp(c.getTime().getTime());
@@ -54,7 +54,7 @@ public class AnimalServiceImpl implements AnimalService
         //return database.getAllFromDate(getDate);
     }
 
-    @Override public List<Animal> getByOrigin(String origin) throws Exception
+  public void getByOrigin(String origin) throws Exception
     {
        // return database.getByOrigin(origin);
     }
