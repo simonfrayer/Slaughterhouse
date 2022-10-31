@@ -43,12 +43,31 @@ public class SlaughterhouseImpl extends SlaughterhouseServerGrpc.SlaughterhouseS
   @Override public void getAllAnimalsFromProduct(ProductRegNumber request,
       StreamObserver<AnimalsFromProduct> responseObserver)
   {
-    super.getAllAnimalsFromProduct(request, responseObserver);
+    ProductRegNumber productRegNumber = ProductRegNumber.newBuilder()
+            .setRegistrationNumber(request.getRegistrationNumber()).build();
+
+    AnimalsFromProduct animalsFromProduct = AnimalsFromProduct.newBuilder()
+                    .addAllAnimalRegistrationNumber(repository.getAllAnimalRegNumberFromProduct(productRegNumber.getRegistrationNumber()))
+            .build();
+
+    responseObserver.onNext(animalsFromProduct);
+    responseObserver.onCompleted();
+
   }
 
-  @Override public void getAllProductFromAnimal(AnimalsFromProduct request,
-      StreamObserver<ProductsFromAnimal> responseObserver)
-  {
-    super.getAllProductFromAnimal(request, responseObserver);
+  @Override
+  public void getAllProductFromAnimal(AnimalRegistrationNumber request, StreamObserver<ProductsFromAnimal> responseObserver) {
+    AnimalRegistrationNumber animalRegistrationNumber = AnimalRegistrationNumber.newBuilder()
+            .setAnimalRegistrationNumber(request.getAnimalRegistrationNumber())
+            .build();
+
+    ProductsFromAnimal productsFromAnimal = ProductsFromAnimal.newBuilder()
+            .addAllProductRegistrationNumber(repository.getAllProductRegNumFromAnimal(animalRegistrationNumber.getAnimalRegistrationNumber()))
+            .build();
+
+    responseObserver.onNext(productsFromAnimal);
+    responseObserver.onCompleted();
   }
+
+
 }

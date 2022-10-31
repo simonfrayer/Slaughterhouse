@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import via.sdj3.slaughterhouse.RestServer.service.AnimalService;
+import via.sdj3.slaughterhouse.RestServer.service.SlaughterhouseService;
 import via.sdj3.slaughterhouse.model.Animal;
 
 import java.util.List;
@@ -14,9 +14,9 @@ import java.util.List;
 public class RestApiController
 {
 
-  private AnimalService service;
+  private SlaughterhouseService service;
 
-  public RestApiController(AnimalService service)
+  public RestApiController(SlaughterhouseService service)
   {
     this.service = service;
   }

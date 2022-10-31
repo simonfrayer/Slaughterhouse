@@ -7,7 +7,7 @@ service SlaughterhouseServer
   rpc createAnimal(Animal) returns (Animal);
   rpc createProduct(Product) returns(Product);
   rpc getAllAnimalsFromProduct(ProductRegNumber) returns(AnimalsFromProduct);
-  rpc getAllProductFromAnimal(AnimalsFromProduct) returns(ProductsFromAnimal);
+  rpc getAllProductFromAnimal(AnimalRegistrationNumber) returns(ProductsFromAnimal);
 }
 
 message ProductRegNumber{
