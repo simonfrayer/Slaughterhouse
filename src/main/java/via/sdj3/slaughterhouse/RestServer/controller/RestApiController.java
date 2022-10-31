@@ -1,11 +1,11 @@
 package via.sdj3.slaughterhouse.RestServer.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import via.sdj3.slaughterhouse.RestServer.service.SlaughterhouseService;
 import via.sdj3.slaughterhouse.model.Animal;
+import via.sdj3.slaughterhouse.model.Product;
 
 import java.util.List;
 
@@ -21,11 +21,11 @@ public class RestApiController
     this.service = service;
   }
   @PostMapping("/animals")
-  public ResponseEntity<Object> registerAnimal(@RequestParam long registerNumber, @RequestParam double weight, @RequestParam String origin)
+  public ResponseEntity<Object> createAnimal(@RequestParam long registerNumber, @RequestParam double weight, @RequestParam String origin)
   {
     try
     {
-      Animal animal = service.registerAnimal(weight,registerNumber,origin);
+      Animal animal = service.createAnimal(weight,registerNumber,origin);
       return new ResponseEntity<Object>(animal, HttpStatus.OK);
     }
     catch (Exception e)
@@ -35,65 +35,48 @@ public class RestApiController
     }
   }
 
+  @PostMapping("/animals")
+  public ResponseEntity<Object> createProducts(@RequestParam long registerNumber, @RequestParam List<Long> animalRegNUmbers)
+  {
+    try
+    {
+      Product product = service.createProduct(registerNumber,animalRegNUmbers);
+      return new ResponseEntity<Object>(product, HttpStatus.OK);
+    }
+    catch (Exception e)
+    {
+      System.out.println(e.getMessage());
+      return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+    }
+  }
+
   @GetMapping("/animals")
-  public ResponseEntity<Object> getAllAnimals()
+  public ResponseEntity<Object> getAnimalsFromProduct(@RequestParam Long regNumber)
   {
     try
     {
-      List<Animal> animals = service.getAnimals();
-      return new ResponseEntity<Object>(animals,HttpStatus.OK);
+      List<Long> animalsRegNumbers = service.getAnimalsFromProduct(regNumber);
+      return new ResponseEntity<>(animalsRegNumbers,HttpStatus.OK);
     }
     catch (Exception e)
     {
       System.out.println(e.getMessage());
-      return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
   }
 
-  @GetMapping(value = "/animals/{regNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> getAnimalById(@PathVariable("regNumber") Long regnumber)
+  @GetMapping("/animals")
+  public ResponseEntity<Object> getProductsFromAnimal(@RequestParam Long regNumber)
   {
     try
     {
-      Animal animal = service.getByRegNumber(regnumber);
-      return new ResponseEntity<Object>(animal,HttpStatus.OK);
+      List<Long> productRegNumbers = service.getProductsFromAnimal(regNumber);
+      return new ResponseEntity<>(productRegNumbers,HttpStatus.OK);
     }
     catch (Exception e)
     {
       System.out.println(e.getMessage());
-      return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-    }
-  }
-
-  @GetMapping(value = "/animals/{year}/{month}/{day}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> getAnimalsByDate(@PathVariable("year") int year, @PathVariable("month") int month, @PathVariable("day") int day)
-  {
-    try
-    {
-      List<Animal> animals = service.getAllFromDate(year, month, day);
-      return new ResponseEntity<Object>(animals,HttpStatus.OK);
-    }
-    catch (Exception e)
-    {
-      System.out.println(e.getMessage());
-      return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-    }
-  }
-
-  @GetMapping (value="/animals/origin")
-  public ResponseEntity<Object> getAnimalsByOrigin(@RequestParam String origin)
-  {
-    try
-    {
-      System.out.println(origin);
-      List<Animal> animals = service.getByOrigin(origin);
-
-      return new ResponseEntity<Object>(animals,HttpStatus.OK);
-    }
-    catch (Exception e)
-    {
-      System.out.println(e.getMessage());
-      return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
   }
 }
