@@ -6,12 +6,12 @@ import java.sql.Timestamp;
 
 public class Animal
 {
-  private Timestamp date;
+  private String date;
   private double weight;
   private long registrationNumber;
   private String origin;
 
-  public Animal(Timestamp date, double weight, long registrationNumber,
+  public Animal(String date, double weight, long registrationNumber,
       String origin)
   {
     this.date = date;
@@ -20,7 +20,7 @@ public class Animal
     this.origin = origin;
   }
 
-  public void setDate(Timestamp date)
+  public void setDate(String date)
   {
     this.date = date;
   }
@@ -40,7 +40,7 @@ public class Animal
     this.origin = origin;
   }
 
-  public Timestamp getDate()
+  public String getDate()
   {
     return date;
   }
