@@ -9,10 +9,9 @@ import java.io.IOException;
 
 public class gRPCServer {
     public static void main(String[] args) throws IOException, InterruptedException {
-        AnimalRepository repository = new AnimalRepositoryImpl();
         Server server = ServerBuilder
                 .forPort(8060)
-                .addService(new SlaughterhouseImpl(repository)).build();
+                .addService(new SlaughterhouseImpl()).build();
 
         server.start();
         server.awaitTermination();

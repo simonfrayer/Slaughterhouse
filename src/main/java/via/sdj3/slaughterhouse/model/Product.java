@@ -1,15 +1,24 @@
 package via.sdj3.slaughterhouse.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "PRODUCTS", schema = "slaughterhouse")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long regNumber;
-    private List<Long> animalRegNumbers;
+    @ElementCollection
+    @CollectionTable(name = "productAnimal", schema = "slaughterhouse", joinColumns = @JoinColumn(name = "animalId"))
+    private List<Long> animals;
 
-    public Product(long regNumber, List<Long> animalRegNumbers) {
+    public Product(long regNumber, List<Long> animals) {
         this.regNumber = regNumber;
-        this.animalRegNumbers = animalRegNumbers;
+        this.animals = animals;
     }
+
+    public Product(){}
 
     public long getRegNumber() {
         return regNumber;
@@ -20,10 +29,10 @@ public class Product {
     }
 
     public List<Long> getAnimalRegNumbers() {
-        return animalRegNumbers;
+        return animals;
     }
 
     public void setAnimalRegNumbers(List<Long> animalRegNumbers) {
-        this.animalRegNumbers = animalRegNumbers;
+        this.animals = animalRegNumbers;
     }
 }

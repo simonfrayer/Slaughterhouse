@@ -1,18 +1,14 @@
 package via.sdj3.slaughterhouse.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import via.sdj3.slaughterhouse.protobuf.Animal;
 import via.sdj3.slaughterhouse.protobuf.Product;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-public interface AnimalRepository
+@Repository
+public interface AnimalRepository extends JpaRepository<Animal, Long>
 {
-    Animal registerAnimal(Animal animal);
-    List<Long> getAllAnimalRegNumberFromProduct(long productRegNum);
-
-    Product registerProduct(Product product);
-
-    List<Long> getAllProductRegNumFromAnimal (long animalRegNum);
-
 }

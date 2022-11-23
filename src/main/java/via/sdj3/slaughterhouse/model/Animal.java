@@ -1,62 +1,60 @@
 package via.sdj3.slaughterhouse.model;
 
+import javax.persistence.*;
 
-import java.sql.Timestamp;
+@Entity
+@Table(name = "ANIMALS", schema = "slaughterhouse")
+public class Animal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long registrationNumber;
+    @Column
+    private String date;
+    @Column
+    private double weight;
+    @Column
+    private String origin;
 
+    public Animal(String date, double weight, long registrationNumber,
+                  String origin) {
+        this.date = date;
+        this.weight = weight;
+        this.registrationNumber = registrationNumber;
+        this.origin = origin;
+    }
 
-public class Animal
-{
-  private String date;
-  private double weight;
-  private long registrationNumber;
-  private String origin;
+    public Animal() {
+    }
 
-  public Animal(String date, double weight, long registrationNumber,
-      String origin)
-  {
-    this.date = date;
-    this.weight = weight;
-    this.registrationNumber = registrationNumber;
-    this.origin = origin;
-  }
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-  public void setDate(String date)
-  {
-    this.date = date;
-  }
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
 
-  public void setWeight(double weight)
-  {
-    this.weight = weight;
-  }
+    public void setRegistrationNumber(long registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
 
-  public void setRegistrationNumber(long registrationNumber)
-  {
-    this.registrationNumber = registrationNumber;
-  }
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
 
-  public void setOrigin(String origin)
-  {
-    this.origin = origin;
-  }
+    public String getDate() {
+        return date;
+    }
 
-  public String getDate()
-  {
-    return date;
-  }
+    public double getWeight() {
+        return weight;
+    }
 
-  public double getWeight()
-  {
-    return weight;
-  }
+    public long getRegistrationNumber() {
+        return registrationNumber;
+    }
 
-  public long getRegistrationNumber()
-  {
-    return registrationNumber;
-  }
-
-  public String getOrigin()
-  {
-    return origin;
-  }
+    public String getOrigin() {
+        return origin;
+    }
 }
