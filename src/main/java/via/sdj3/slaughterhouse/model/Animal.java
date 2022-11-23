@@ -15,13 +15,14 @@ public class Animal {
     @Column
     private String origin;
 
-    public Animal(String date, double weight, long registrationNumber,
-                  String origin) {
-        this.date = date;
-        this.weight = weight;
-        this.registrationNumber = registrationNumber;
-        this.origin = origin;
-    }
+  public Animal(String date, double weight, long registrationNumber,
+      String origin)
+  {
+    this.date = date;
+    this.weight = weight;
+    this.registrationNumber = registrationNumber;
+    this.origin = origin;
+  }
 
     public Animal() {
     }

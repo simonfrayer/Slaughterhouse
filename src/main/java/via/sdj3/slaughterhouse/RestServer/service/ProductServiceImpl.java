@@ -15,20 +15,17 @@ public class ProductServiceImpl implements ProductService{
     public ProductServiceImpl(ServerInterface serverInterface){
         this.grpcServer = serverInterface;
     }
-    @Override
-    public Product createProduct(long regNumber, List<Long> animalRegNumbers) {
-        via.sdj3.slaughterhouse.protobuf.Product product = via.sdj3.slaughterhouse.protobuf.Product.newBuilder()
-                .setRegistrationNumber(regNumber)
-                .addAllAnimalRegNumber(animalRegNumbers).build();
-
-        return grpcServer.createProduct(product);
+    @Override public Product createProduct(List<Long> animalRegNumbers)
+    {
+        return null;
     }
 
-    @Override
-    public List<Long> getAnimalsFromProduct(long productRegNumber) {
-        ProductRegNumber regNumber = ProductRegNumber.newBuilder()
-                .setRegistrationNumber(productRegNumber).build();
+    @Override public List<Product> getProductsFromAnimal(long animalRegNumber)
+    {
+        via.sdj3.slaughterhouse.protobuf.Product product = via.sdj3.slaughterhouse.protobuf.Product.newBuilder()
+            .setRegistrationNumber(regNumber)
+            .addAllAnimalRegNumber(animalRegNumbers).build();
 
-        return grpcServer.getAllAnimalsFromProduct(regNumber);
+        return grpcServer.createProduct(product);
     }
 }

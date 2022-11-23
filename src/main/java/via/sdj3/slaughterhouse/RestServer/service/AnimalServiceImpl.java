@@ -19,26 +19,39 @@ public class AnimalServiceImpl implements AnimalService{
         this.grpcServer = serverInterface;
     }
 
-    @Override
-    public Animal createAnimal(double weight, long registrationNumber, String origin) {
+
+    @Override public Animal createAnimal(double weight, String origin)
+    {
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MMM.yyyy");
         String formattedString = localDate.format(formatter);
 
         via.sdj3.slaughterhouse.protobuf.Animal animal = via.sdj3.slaughterhouse.protobuf.Animal.newBuilder()
-                .setDate(formattedString)
-                .setWeight(weight)
-                .setRegistrationNumber(registrationNumber)
-                .setOrigin(origin).build();
+            .setDate(formattedString)
+            .setWeight(weight)
+            .setRegistrationNumber(registrationNumber)
+            .setOrigin(origin).build();
 
         return grpcServer.createAnimal(animal);
     }
 
-    @Override
-    public List<Long> getProductsFromAnimal(long animalRegNumber) {
-        AnimalRegistrationNumber regNumber = AnimalRegistrationNumber.newBuilder()
-                .setAnimalRegistrationNumber(animalRegNumber).build();
+    @Override public List<Animal> getAnimalsFromProduct(long productRegNumber)
+    {
+        return null;
+    }
 
-        return grpcServer.getProductsFromAnimal(regNumber);
+    @Override public Animal getAnimalById(long productRegNumber)
+    {
+        return null;
+    }
+
+    @Override public List<Animal> getAnimalsByOrigin(String origin)
+    {
+        return null;
+    }
+
+    @Override public List<Animal> getAnimalsByDate(LocalDate date)
+    {
+        return null;
     }
 }
