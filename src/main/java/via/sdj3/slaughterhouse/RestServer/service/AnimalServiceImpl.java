@@ -1,5 +1,6 @@
 package via.sdj3.slaughterhouse.RestServer.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import via.sdj3.slaughterhouse.RestServer.gRPCCLient.ServerInterface;
 import via.sdj3.slaughterhouse.model.Animal;
@@ -19,8 +20,9 @@ public class AnimalServiceImpl implements AnimalService{
 
     private ServerInterface grpcServer;
 
-    public AnimalServiceImpl(ServerInterface serverInterface) {
-        this.grpcServer = serverInterface;
+    @Autowired
+    public AnimalServiceImpl() {
+
     }
 
 

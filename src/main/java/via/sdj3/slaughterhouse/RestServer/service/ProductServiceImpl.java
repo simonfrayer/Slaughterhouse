@@ -1,5 +1,7 @@
 package via.sdj3.slaughterhouse.RestServer.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import via.sdj3.slaughterhouse.RestServer.gRPCCLient.ServerInterface;
 import via.sdj3.slaughterhouse.model.Product;
@@ -12,11 +14,10 @@ import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService{
-
     private ServerInterface grpcServer;
 
-    public ProductServiceImpl(ServerInterface serverInterface){
-        this.grpcServer = serverInterface;
+    @Autowired
+    public ProductServiceImpl(){
     }
     @Override public Product createProduct(List<Long> animalRegNumbers)
     {
