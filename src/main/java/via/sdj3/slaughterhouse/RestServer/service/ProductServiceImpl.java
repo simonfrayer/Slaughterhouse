@@ -20,15 +20,19 @@ public class ProductServiceImpl implements ProductService{
     }
     @Override public Product createProduct(List<Long> animalRegNumbers)
     {
-        //ProductToCreate productToCreate = ProductToCreate.newBuilder().setAnimals(animalRegNumbers).build();
-       // return grpcServer.createProduct(productToCreate);
-        return new Product();
+        List<AnimalRegistrationNumber> list = new ArrayList<>();
+        for (int i = 0; i < animalRegNumbers.size(); i++)
+        {
+            AnimalRegistrationNumber regNum = AnimalRegistrationNumber.newBuilder().setAnimalRegistrationNumber(animalRegNumbers.get(i)).build();
+            list.add(regNum);
+        }
+        ProductToCreate productToCreate = ProductToCreate.newBuilder().addAllAnimals(list).build();
+        return grpcServer.createProduct(productToCreate);
     }
 
     @Override public List<Product> getProductsFromAnimal(long animalRegNumber)
     {
         AnimalRegistrationNumber regNumber = AnimalRegistrationNumber.newBuilder().setAnimalRegistrationNumber(animalRegNumber).build();
-        //return grpcServer.getProductsFromAnimal(AnimalRegistrationNumber);
-        return new ArrayList<>();
+        return grpcServer.getProductsFromAnimal(regNumber);
     }
 }

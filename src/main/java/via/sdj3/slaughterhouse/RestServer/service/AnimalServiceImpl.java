@@ -35,32 +35,28 @@ public class AnimalServiceImpl implements AnimalService{
             .setWeight(weight)
             .setOrigin(origin).build();
 
-        //return grpcServer.createAnimal(animal);
-        return new Animal();
+        return grpcServer.createAnimal(animal);
     }
 
     @Override public List<Animal> getAnimalsFromProduct(long productRegNumber)
     {
         ProductRegNumber regNumber = ProductRegNumber.newBuilder().setRegistrationNumber(productRegNumber).build();
 
-        //return grpcServer.getAllAnimalsFromProduct(regNumber);
-        return new ArrayList<>();
+        return grpcServer.getAllAnimalsFromProduct(regNumber);
     }
 
     @Override public Animal getAnimalById(long productRegNumber)
     {
         AnimalRegistrationNumber regNumber = AnimalRegistrationNumber.newBuilder().setAnimalRegistrationNumber(productRegNumber).build();
 
-        //return grpcServer.getAnimalById(regNumber);
-        return new Animal();
+        return grpcServer.getAnimalById(regNumber);
     }
 
     @Override public List<Animal> getAnimalsByOrigin(String origin)
     {
         Origin animalOrigin = Origin.newBuilder().setOrigin(origin).build();
 
-       // return grpcServer.getAnimalsByOrigin(animalOrigin);
-        return new ArrayList<>();
+        return grpcServer.getAnimalsByOrigin(animalOrigin);
     }
 
     @Override public List<Animal> getAnimalsByDate(LocalDate date)
@@ -70,7 +66,6 @@ public class AnimalServiceImpl implements AnimalService{
 
         Date dateToFind = Date.newBuilder().setLocaldate(formattedString).build();
 
-        //return grpcServer.getAnimalsByDate(dateToFind);
-        return new ArrayList<>();
+        return grpcServer.getAnimalsByDate(dateToFind);
     }
 }
