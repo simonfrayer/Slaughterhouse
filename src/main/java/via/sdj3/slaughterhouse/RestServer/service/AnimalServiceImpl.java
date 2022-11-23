@@ -5,6 +5,7 @@ import via.sdj3.slaughterhouse.RestServer.gRPCCLient.ServerInterface;
 import via.sdj3.slaughterhouse.model.Animal;
 import via.sdj3.slaughterhouse.protobuf.AnimalRegistrationNumber;
 import via.sdj3.slaughterhouse.protobuf.ProductRegNumber;
+import via.sdj3.slaughterhouse.repository.AnimalRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

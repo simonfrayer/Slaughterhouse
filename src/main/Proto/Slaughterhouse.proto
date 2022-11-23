@@ -4,10 +4,13 @@ option java_package = "via.sdj3.slaughterhouse.protobuf";
 
 service SlaughterhouseServer
 {
-  rpc createAnimal(Animal) returns (Animal);
-  rpc createProduct(Product) returns(Product);
+  rpc createAnimal(AnimalToCreate) returns (Animal);
+  rpc createProduct(ProductToCreate) returns(Product);
   rpc getAllAnimalsFromProduct(ProductRegNumber) returns(AnimalsFromProduct);
   rpc getAllProductFromAnimal(AnimalRegistrationNumber) returns(ProductsFromAnimal);
+  rpc getAnimalById(AnimalRegistrationNumber) returns(Animal);
+  rpc getAnimalsByOrigin(Origin) returns(AnimalsFromProduct);
+  rpc getAnimalsByDate(Date) returns(AnimalsFromProduct);
 }
 
 message ProductRegNumber{
@@ -16,7 +19,11 @@ message ProductRegNumber{
 
 message Product {
   int64 registrationNumber = 1;
-  repeated int64 animalRegNumber =2;
+  repeated Animal animals =2;
+}
+
+message ProductToCreate{
+  repeated AnimalRegistrationNumber animals = 1;
 }
 
 message Animal {
@@ -26,8 +33,14 @@ message Animal {
   string origin=4;
 }
 
+message AnimalToCreate{
+  string date =1;
+  double weight = 2;
+  string origin=4;
+}
+
 message AnimalsFromProduct {
-  repeated int64 animalRegistrationNumber = 1;
+  repeated Animal animals = 1;
 }
 
 message AnimalRegistrationNumber {
@@ -35,5 +48,13 @@ message AnimalRegistrationNumber {
 }
 
   message ProductsFromAnimal {
-    repeated int64 productRegistrationNumber = 1;
+    repeated Product products = 1;
+  }
+
+  message Origin{
+  string origin = 1;
+  }
+
+  message Date{
+  string localdate = 1;
   }
