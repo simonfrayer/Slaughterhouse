@@ -4,11 +4,14 @@ import org.springframework.stereotype.Service;
 import via.sdj3.slaughterhouse.RestServer.gRPCCLient.ServerInterface;
 import via.sdj3.slaughterhouse.model.Animal;
 import via.sdj3.slaughterhouse.protobuf.AnimalRegistrationNumber;
+import via.sdj3.slaughterhouse.protobuf.Date;
+import via.sdj3.slaughterhouse.protobuf.Origin;
 import via.sdj3.slaughterhouse.protobuf.ProductRegNumber;
 import via.sdj3.slaughterhouse.repository.AnimalRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,32 +30,47 @@ public class AnimalServiceImpl implements AnimalService{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MMM.yyyy");
         String formattedString = localDate.format(formatter);
 
-        via.sdj3.slaughterhouse.protobuf.Animal animal = via.sdj3.slaughterhouse.protobuf.Animal.newBuilder()
+        via.sdj3.slaughterhouse.protobuf.AnimalToCreate animal = via.sdj3.slaughterhouse.protobuf.AnimalToCreate.newBuilder()
             .setDate(formattedString)
             .setWeight(weight)
-            .setRegistrationNumber(registrationNumber)
             .setOrigin(origin).build();
 
-        return grpcServer.createAnimal(animal);
+        //return grpcServer.createAnimal(animal);
+        return new Animal();
     }
 
     @Override public List<Animal> getAnimalsFromProduct(long productRegNumber)
     {
-        return null;
+        ProductRegNumber regNumber = ProductRegNumber.newBuilder().setRegistrationNumber(productRegNumber).build();
+
+        //return grpcServer.getAllAnimalsFromProduct(regNumber);
+        return new ArrayList<>();
     }
 
     @Override public Animal getAnimalById(long productRegNumber)
     {
-        return null;
+        AnimalRegistrationNumber regNumber = AnimalRegistrationNumber.newBuilder().setAnimalRegistrationNumber(productRegNumber).build();
+
+        //return grpcServer.getAnimalById(regNumber);
+        return new Animal();
     }
 
     @Override public List<Animal> getAnimalsByOrigin(String origin)
     {
-        return null;
+        Origin animalOrigin = Origin.newBuilder().setOrigin(origin).build();
+
+       // return grpcServer.getAnimalsByOrigin(animalOrigin);
+        return new ArrayList<>();
     }
 
     @Override public List<Animal> getAnimalsByDate(LocalDate date)
     {
-        return null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MMM.yyyy");
+        String formattedString = date.format(formatter);
+
+        Date dateToFind = Date.newBuilder().setLocaldate(formattedString).build();
+
+        //return grpcServer.getAnimalsByDate(dateToFind);
+        return new ArrayList<>();
     }
 }
