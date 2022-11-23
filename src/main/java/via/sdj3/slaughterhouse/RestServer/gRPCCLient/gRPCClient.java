@@ -4,13 +4,15 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.stereotype.Service;
+import via.sdj3.slaughterhouse.model.Animal;
+import via.sdj3.slaughterhouse.model.Product;
 import via.sdj3.slaughterhouse.protobuf.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @GRpcService
-public class gRPCClient{
+public class gRPCClient implements ServerInterface{
 
     public static SlaughterhouseServerGrpc.SlaughterhouseServerBlockingStub stub;
 
@@ -22,45 +24,98 @@ public class gRPCClient{
 
         stub = SlaughterhouseServerGrpc.newBlockingStub(channel);
     }
-/*
-    @Override public via.sdj3.slaughterhouse.model.Animal createAnimal(
-        Animal animal)
-    {
-        Animal animalResponse = stub.createAnimal(animal);
 
-        return new via.sdj3.slaughterhouse.model.Animal(animalResponse.getDate(),
-            animalResponse.getWeight(),animalResponse.getRegistrationNumber(),animalResponse.getOrigin());
+    @Override public Animal createAnimal(AnimalToCreate animal)
+    {
+        via.sdj3.slaughterhouse.protobuf.Animal animalResponse = stub.createAnimal(animal);
+
+        return new via.sdj3.slaughterhouse.model.Animal(animalResponse.getRegistrationNumber(),animalResponse.getDate(),
+            animalResponse.getWeight(),animalResponse.getOrigin());
     }
 
-    @Override public via.sdj3.slaughterhouse.model.Product createProduct(
-        Product product)
-    {
-        Product responseProduct = stub.createProduct(product);
 
-        return new via.sdj3.slaughterhouse.model.Product(responseProduct.getRegistrationNumber(), responseProduct.getAnimalRegNumberList());
+
+    @Override public Product createProduct(ProductToCreate product)
+    {
+        via.sdj3.slaughterhouse.protobuf.Product productResponse = stub.createProduct(product);
+        List<Long> regNumbers = new ArrayList<>();
+        for (int i = 0; i < productResponse.getAnimalsCount(); i++)
+        {
+            regNumbers.add(productResponse.getAnimals(i).getAnimalRegistrationNumber());
+        }
+        return new via.sdj3.slaughterhouse.model.Product(productResponse.getRegistrationNumber(), regNumbers);
+
     }
 
-    @Override public List<Long> getAllAnimalsFromProduct(
+    @Override public List<Animal> getAllAnimalsFromProduct(
         ProductRegNumber regNum)
     {
         AnimalsFromProduct response = stub.getAllAnimalsFromProduct(regNum);
-        ArrayList<Long> animalsRegNumbers = new ArrayList<>();
+        ArrayList<Animal> animals = new ArrayList<>();
 
-        for (int i = 0; i < response.getAnimalRegistrationNumberCount(); i++)
+        for (int i = 0; i < response.getAnimalsCount(); i++)
         {
-            animalsRegNumbers.add(response.getAnimalRegistrationNumber(i));
+            animals.add(new Animal(response.getAnimals(i).getRegistrationNumber(),response.getAnimals(i).getDate(),response.getAnimals(i).getWeight()
+            ,response.getAnimals(i).getOrigin()));
         }
 
-        return animalsRegNumbers;
+        return animals;
     }
 
-    @Override public List<Long> getProductsFromAnimal(
+    @Override public List<Product> getProductsFromAnimal(
         AnimalRegistrationNumber regNum)
     {
-        ProductsFromAnimal productRegNumbers = stub.getAllProductFromAnimal(regNum);
+        ProductsFromAnimal response = stub.getAllProductFromAnimal(regNum);
 
-        return productRegNumbers.getProductRegistrationNumberList();
+        ArrayList<Product> products = new ArrayList<>();
 
+        for (int i = 0; i < response.getProductsCount(); i++)
+        {
+            List<Long> regNumbers = new ArrayList<>();
+            for (int j = 0; i < response.getProducts(i).getAnimalsCount(); i++)
+            {
+                regNumbers.add(response.getProducts(i).getAnimals(j).getAnimalRegistrationNumber());
+            }
+            products.add(new Product(response.getProducts(i).getRegistrationNumber(),regNumbers));
+
+        }
+        return products;
     }
- */
+
+    @Override public Animal getAnimalById(AnimalRegistrationNumber regNum)
+    {
+        via.sdj3.slaughterhouse.protobuf.Animal animalResponse = stub.getAnimalById(regNum);
+        return new via.sdj3.slaughterhouse.model.Animal(animalResponse.getRegistrationNumber(),animalResponse.getDate(),
+            animalResponse.getWeight(),animalResponse.getOrigin());
+    }
+
+    @Override public List<Animal> getAnimalsByOrigin(Origin origin)
+    {
+       AnimalsFromProduct response = stub.getAnimalsByOrigin(origin);
+
+        ArrayList<Animal> animals = new ArrayList<>();
+
+        for (int i = 0; i < response.getAnimalsCount(); i++)
+        {
+            animals.add(new Animal(response.getAnimals(i).getRegistrationNumber(),response.getAnimals(i).getDate(),response.getAnimals(i).getWeight()
+                ,response.getAnimals(i).getOrigin()));
+        }
+
+        return animals;
+    }
+
+    @Override public List<Animal> getAnimalsByDate(Date date)
+    {
+        AnimalsFromProduct response = stub.getAnimalsByDate(date);
+
+        ArrayList<Animal> animals = new ArrayList<>();
+
+        for (int i = 0; i < response.getAnimalsCount(); i++)
+        {
+            animals.add(new Animal(response.getAnimals(i).getRegistrationNumber(),response.getAnimals(i).getDate(),response.getAnimals(i).getWeight()
+                ,response.getAnimals(i).getOrigin()));
+        }
+
+        return animals;
+    }
 }

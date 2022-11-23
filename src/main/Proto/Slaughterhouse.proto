@@ -19,7 +19,7 @@ message ProductRegNumber{
 
 message Product {
   int64 registrationNumber = 1;
-  repeated Animal animals =2;
+  repeated AnimalRegistrationNumber animals =2;
 }
 
 message ProductToCreate{
