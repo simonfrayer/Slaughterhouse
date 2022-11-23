@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @GRpcService
-public class gRPCClient implements ServerInterface{
+public class gRPCClient{
 
     public static SlaughterhouseServerGrpc.SlaughterhouseServerBlockingStub stub;
 
@@ -22,7 +22,7 @@ public class gRPCClient implements ServerInterface{
 
         stub = SlaughterhouseServerGrpc.newBlockingStub(channel);
     }
-
+/*
     @Override public via.sdj3.slaughterhouse.model.Animal createAnimal(
         Animal animal)
     {
@@ -62,4 +62,5 @@ public class gRPCClient implements ServerInterface{
         return productRegNumbers.getProductRegistrationNumberList();
 
     }
+ */
 }

@@ -1,6 +1,7 @@
 package via.sdj3.slaughterhouse.gRPCServer;
 
 import io.grpc.stub.StreamObserver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import via.sdj3.slaughterhouse.protobuf.*;
 import via.sdj3.slaughterhouse.repository.AnimalRepository;
@@ -10,14 +11,17 @@ import via.sdj3.slaughterhouse.repository.ProductRepository;
 public class SlaughterhouseImpl extends SlaughterhouseServerGrpc.SlaughterhouseServerImplBase
 {
 
+
   private AnimalRepository animalRepository;
+
   private ProductRepository productRepository;
 
-  public SlaughterhouseImpl(AnimalRepository animalRepository, ProductRepository productRepository)
+
+
+  public SlaughterhouseImpl()
   {
-    this.animalRepository = animalRepository;
-    this.productRepository = productRepository;
   }
+  /*
   @Override public void createAnimal(Animal request,
       StreamObserver<Animal> responseObserver)
   {
@@ -76,5 +80,5 @@ public class SlaughterhouseImpl extends SlaughterhouseServerGrpc.SlaughterhouseS
     responseObserver.onCompleted();
   }
 
-
+*/
 }
