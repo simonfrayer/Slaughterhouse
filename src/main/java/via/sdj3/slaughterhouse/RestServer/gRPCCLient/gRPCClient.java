@@ -14,13 +14,13 @@ public class gRPCClient implements ServerInterface{
 
     public static SlaughterhouseServerGrpc.SlaughterhouseServerBlockingStub stub;
 
-    public static void main(String[] args) {
+    public gRPCClient()
+    {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8060)
-                .usePlaintext()
-                .build();
+            .usePlaintext()
+            .build();
 
-     stub = SlaughterhouseServerGrpc.newBlockingStub(channel);
-
+        stub = SlaughterhouseServerGrpc.newBlockingStub(channel);
     }
 
     @Override public via.sdj3.slaughterhouse.model.Animal createAnimal(
