@@ -11,7 +11,7 @@ import via.sdj3.slaughterhouse.gRPCServer.SlaughterhouseImpl;
 
 @Configuration
 public class ServerConfig {
-    @Bean public ProductServiceImpl getProductServiceImpl(){return new ProductServiceImpl();}
-    @Bean public AnimalServiceImpl getAnimalServiceImpl(){return new AnimalServiceImpl();}
+    //@Bean public SlaughterhouseImpl getSlaughterhouseImpl(){return new SlaughterhouseImpl();}
+    //@Bean public AnimalServiceImpl getAnimalServiceImpl(){return new AnimalServiceImpl();}
 
 }

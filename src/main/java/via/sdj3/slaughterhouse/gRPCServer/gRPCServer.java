@@ -12,15 +12,14 @@ import java.io.IOException;
 
 @GRpcService
 public class gRPCServer {
-    static AnimalRepository animalRepository;
-    static ProductRepository productRepository;
+    private static SlaughterhouseImpl slaughterhouse;
     public static void main(String[] args) throws IOException, InterruptedException {
 
 
         Server server = ServerBuilder
                 .forPort(8060)
-                .addService(new AnimalServiceImpl()).
-                build();
+                .addService(slaughterhouse)
+                .build();
 
         server.start();
         server.awaitTermination();

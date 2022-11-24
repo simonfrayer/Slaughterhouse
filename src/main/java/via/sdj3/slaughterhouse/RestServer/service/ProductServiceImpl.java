@@ -16,8 +16,9 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService{
     private ServerInterface grpcServer;
 
-    @Autowired
-    public ProductServiceImpl(){
+
+    public ProductServiceImpl(ServerInterface grpcServer){
+        this.grpcServer = grpcServer;
     }
     @Override public Product createProduct(List<Long> animalRegNumbers)
     {

@@ -1,8 +1,10 @@
 package via.sdj3.slaughterhouse.RestServer.service;
 
+import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import via.sdj3.slaughterhouse.RestServer.gRPCCLient.ServerInterface;
+import via.sdj3.slaughterhouse.gRPCServer.SlaughterhouseImpl;
 import via.sdj3.slaughterhouse.model.Animal;
 import via.sdj3.slaughterhouse.protobuf.AnimalRegistrationNumber;
 import via.sdj3.slaughterhouse.protobuf.Date;
@@ -18,11 +20,10 @@ import java.util.List;
 @Service
 public class AnimalServiceImpl implements AnimalService{
 
-    @Autowired
     private ServerInterface grpcServer;
 
-    public AnimalServiceImpl() {
-
+    public AnimalServiceImpl(ServerInterface grpcServer) {
+        this.grpcServer=grpcServer;
     }
 
 
