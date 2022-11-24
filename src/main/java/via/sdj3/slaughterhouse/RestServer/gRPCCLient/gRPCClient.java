@@ -41,7 +41,7 @@ public class gRPCClient implements ServerInterface{
         List<Long> regNumbers = new ArrayList<>();
         for (int i = 0; i < productResponse.getAnimalsCount(); i++)
         {
-            regNumbers.add(productResponse.getAnimals(i).getAnimalRegistrationNumber());
+            regNumbers.add(productResponse.getAnimals(i).getRegistrationNumber());
         }
         return new via.sdj3.slaughterhouse.model.Product(productResponse.getRegistrationNumber(), regNumbers);
 
@@ -74,7 +74,7 @@ public class gRPCClient implements ServerInterface{
             List<Long> regNumbers = new ArrayList<>();
             for (int j = 0; i < response.getProducts(i).getAnimalsCount(); i++)
             {
-                regNumbers.add(response.getProducts(i).getAnimals(j).getAnimalRegistrationNumber());
+                regNumbers.add(response.getProducts(i).getAnimals(j).getRegistrationNumber());
             }
             products.add(new Product(response.getProducts(i).getRegistrationNumber(),regNumbers));
 

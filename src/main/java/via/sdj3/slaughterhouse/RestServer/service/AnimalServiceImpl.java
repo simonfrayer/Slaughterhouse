@@ -18,9 +18,9 @@ import java.util.List;
 @Service
 public class AnimalServiceImpl implements AnimalService{
 
+    @Autowired
     private ServerInterface grpcServer;
 
-    @Autowired
     public AnimalServiceImpl() {
 
     }

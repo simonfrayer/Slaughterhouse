@@ -4,6 +4,7 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
+import via.sdj3.slaughterhouse.RestServer.service.AnimalServiceImpl;
 import via.sdj3.slaughterhouse.repository.AnimalRepository;
 import via.sdj3.slaughterhouse.repository.ProductRepository;
 
@@ -18,7 +19,8 @@ public class gRPCServer {
 
         Server server = ServerBuilder
                 .forPort(8060)
-                .addService(new SlaughterhouseImpl(animalRepository, productRepository)).build();
+                .addService(new AnimalServiceImpl()).
+                build();
 
         server.start();
         server.awaitTermination();

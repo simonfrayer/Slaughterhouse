@@ -1,5 +1,7 @@
 package via.sdj3.slaughterhouse.RestServer.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +17,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class RestApiController
 {
-
   private AnimalService animalService;
   private ProductService productService;
 
-  public RestApiController(AnimalService animalService,ProductService productService)
+  public RestApiController(AnimalService animalService, ProductService productService)
   {
     this.animalService = animalService;
     this.productService = productService;
