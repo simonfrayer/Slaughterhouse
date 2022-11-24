@@ -13,6 +13,9 @@ public class Product {
     @CollectionTable(name = "productAnimal", schema = "slaughterhouse", joinColumns = @JoinColumn(name = "animalId"))
     private List<Long> animals;
 
+    public Product(List<Long> animals) {
+        this.animals = animals;
+    }
     public Product(long regNumber, List<Long> animals) {
         this.regNumber = regNumber;
         this.animals = animals;

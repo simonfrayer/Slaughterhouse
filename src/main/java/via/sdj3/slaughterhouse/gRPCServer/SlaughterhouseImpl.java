@@ -15,7 +15,9 @@ import java.util.List;
 @Repository
 @GRpcService
 public class SlaughterhouseImpl extends SlaughterhouseServerGrpc.SlaughterhouseServerImplBase {
+
     private AnimalRepository animalRepository;
+
     private ProductRepository productRepository;
 
     @Autowired
@@ -23,6 +25,7 @@ public class SlaughterhouseImpl extends SlaughterhouseServerGrpc.SlaughterhouseS
         this.animalRepository = animalRepository;
         this.productRepository = productRepository;
     }
+
 
     @Override
     public void createAnimal(AnimalToCreate request, StreamObserver<Animal> responseObserver) {
@@ -43,23 +46,21 @@ public class SlaughterhouseImpl extends SlaughterhouseServerGrpc.SlaughterhouseS
 
     @Override
     public void createProduct(ProductToCreate request, StreamObserver<Product> responseObserver) {
-        List<Animal> animalIdList = new ArrayList<>();
         List<Long> animalRegNumbers = new ArrayList<>();
 
-        Product product = Product.newBuilder()
-                .addAllAnimals(animalIdList)
-                .build();
-
-        for (Animal animal : product.getAnimalsList()
-        ) {
-            animalRegNumbers.add(animal.getRegistrationNumber());
+        for (var animal: request.getAnimalsList())
+        {
+            animalRegNumbers.add(animal.getAnimalRegistrationNumber());
         }
 
-        via.sdj3.slaughterhouse.model.Product productToStore = new via.sdj3.slaughterhouse.model.Product();
-        productToStore.setAnimalRegNumbers(animalRegNumbers);
+        via.sdj3.slaughterhouse.model.Product product = new via.sdj3.slaughterhouse.model.Product(animalRegNumbers);
 
-        productRepository.save(productToStore);
-        responseObserver.onNext(product);
+        productRepository.save(product);
+
+
+        Product productToSend = Product.newBuilder().setRegistrationNumber(1).addAllAnimals(request.getAnimalsList()).build();
+
+        responseObserver.onNext(productToSend);
         responseObserver.onCompleted();
     }
 
